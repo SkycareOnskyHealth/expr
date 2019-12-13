@@ -1,23 +1,49 @@
-package expr
+package errors
 
 import (
-	"bytes"
+	"fmt"
+	"strings"
 
-	"text/template"
+	"github.com/onskycloud/io"
 )
 
 // ParseText parse template
-func ParseText(name string, body string, data interface{}) (string, error) {
-	_template := template.New(name)
-	_templateParse, err := _template.Parse(body)
-	if err != nil {
-		return "", err
+// func New(locale Locale, errorType ErrorType, errorCode Status, key string, messages interface{}) (string, error) {
+
+// }
+func (e Errors) detectLocale(locale Locale) ([]ErrorDictionary, error) {
+	fileName := "en_us"
+	if locale != ConvertLocale(fileName) {
+		fileName = strings.ToLower(locale.String())
 	}
-	var t = template.Must(_templateParse, nil)
-	buf := bytes.Buffer{}
-	err = t.Execute(&buf, data)
-	if err != nil {
-		return "", err
+	path := fmt.Sprintf("%s/%s.yaml", RootPath, fileName)
+	file, err := io.ReadAll(path)
+	if err != nil || file == "" {
+		return err
 	}
-	return buf.String(), nil
+	return file
+}
+
+func LoadErrorList() ([]Errors, error) {
+	errorDicts := []Errors{}
+	files, err := io.ReadDir(RootPath)
+	fmt.Printf("files : %+v\n", files)
+	if err != nil {
+		return errorDicts, err
+	}
+	for i := 0; i < len(files); i++ {
+		file := &[]ErrorDictionary{}
+		path := fmt.Sprintf("%s/%s", RootPath, files[i].Name)
+		err := io.ReadYamlFile(path, file)
+		if err != nil || file == nil {
+			continue
+		}
+		locale := strings.Split(files[i].Name, ".")[0]
+		errorDict := Errors{
+			Locale:    ConvertLocale(locale),
+			ErrorList: *file,
+		}
+		errorDicts = append(errorDicts, errorDict)
+	}
+	return errorDicts, nil
 }
