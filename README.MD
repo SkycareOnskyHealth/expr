@@ -1,10 +1,11 @@
-# Errors Helper
+# Expr Helper
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://github.com/onskycloud/errors)
+[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://github.com/onskycloud/expr)
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/onskycloud/errors)
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/onskycloud/expr)
 
- a library to store all error message
+ParseText parse template.
+
 ## Getting Started!
 > Define struct
   ```
@@ -48,7 +49,7 @@ Request handler requires [Go](https://golang.org/) v1.11+ to run.
 Install the package.
 
 ```sh
-$ go get github.com/onskycloud/errors
+$ go get github.com/onskycloud/expr
 ```
 
 #### Kubernetes + Google Cloud
