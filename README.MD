@@ -1,8 +1,8 @@
 # Expr Helper
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://github.com/onskycloud/expr)
+[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://github.com/SkycareOnskyHealth/expr)
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/onskycloud/expr)
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/SkycareOnskyHealth/expr)
 
 ParseText parse template.
 
@@ -49,7 +49,7 @@ Request handler requires [Go](https://golang.org/) v1.11+ to run.
 Install the package.
 
 ```sh
-$ go get github.com/onskycloud/expr
+$ go get github.com/SkycareOnskyHealth/expr
 ```
 
 #### Kubernetes + Google Cloud
